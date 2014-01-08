@@ -28,7 +28,10 @@ You can set timechange to get accumulated result of previous time window.
         time = Number(time)
         time - (time % @window)
 
-      add: (key, value) ->
+* add
+Adds value to counter of key. get accumulated result via callback(which can be omitted if you don't need result).
+
+      add: (key, value, cb = -> ) ->
         span = @cropTime()
         if span != @current_time
           if @timechange?
@@ -36,9 +39,9 @@ You can set timechange to get accumulated result of previous time window.
               @timechange(null, @current_time, k, @counters[k])
           @counters = {}
           @current_time = span
-        return unless value
         @counters[key] ?= 0
-        return @counters[key] += value
+        cb null, @counters[key] += value
+        return
 
 ## Testcases
 
