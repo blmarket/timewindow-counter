@@ -1,6 +1,6 @@
 {
   "name": "timewindow-counter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple counter with time-window expiration nature",
   "main": "index.coffee",
   "scripts": {
