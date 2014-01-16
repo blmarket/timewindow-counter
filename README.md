@@ -9,9 +9,17 @@ Simple counter with time-window expiration nature
     
     var tt = new TimeWindow(1000); // Time Window is 1 second(default is 5 min)
     
-    tt.add("key", 1); // expected value : 1
-    tt.add("key", 2); // expected : 3
-    setTimeout(function() { tt.add("key", 5); }, 1024); // expected value : 5, not 8
+    tt.add("key", 1, function(err, res) {
+      console.log(res); // expected : 1
+    });
+    tt.add("key", 2, function(err, res) {
+      console.log(res); // expected : 3
+    });
+    setTimeout(function() { 
+      tt.add("key", 5, function(err, res) {
+        console.log(res); // expected : 5, not 8
+      });
+    }, 1024);
 
 ## API Reference
 
